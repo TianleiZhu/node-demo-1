@@ -27,7 +27,7 @@ var server = http.createServer(function(request, response){
     response.write(`
     <!DOCTYPE html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="/x">
     </head>
     <body>
         <h1>h1_tag</h1>  
@@ -35,7 +35,14 @@ var server = http.createServer(function(request, response){
     </html>
     `)
     response.end()
-  } else {
+  } else if(path === '/x'){
+    response.statusCode = 200
+    response.setHeader('Content-Type', 'text/css;charset=utf-8')
+    response.write(`
+    h1{color:red}
+    `)
+    response.end()}
+    else {
     response.statusCode = 404
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write(`你访问的页面不存在`)
